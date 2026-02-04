@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StyleHub - Fashion Store</title>
+    <title>StyleShop</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,49 +11,105 @@
 <!-- HEADER -->
 
 <header>
-    <div class="logo">StyleHub</div>
+    <div class="logo">StyleShop</div>
 
     <nav>
         <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">Over ons</a>
-        <a href="#">Contact</a>
+        <a href="#">Categorieën</a>
+        <a href="#">Winkelwagen</a>
+        <a href="#">Account</a>
     </nav>
 </header>
 
-<!-- HERO -->
+<!-- HERO (zoals je React layout) -->
 
 <section class="hero">
+    <div class="overlay"></div>
+
     <div class="hero-content">
-        <h1>Nieuwe Collectie 2026</h1>
-        <p>Minimalistisch. Modern. Stijlvol.</p>
-        <button>Shop nu</button>
+        <h1>StyleShop</h1>
+        <p>Discover Your Perfect Style</p>
+        <button>Shop Now</button>
     </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- INTRO -->
+
+<section class="intro">
+    <h2>Welcome to StyleShop</h2>
+    <p>
+        Your destination for premium quality clothing and accessories.
+        We offer a carefully curated selection of fashion-forward pieces
+        that combine style, comfort, and sustainability.
+    </p>
+</section>
+
+<!-- FEATURED PRODUCTS -->
 
 <section class="products">
-    <h2>Populaire Producten</h2>
+
+    <div class="products-header">
+        <h2>Featured Products</h2>
+        <button class="outline">View All</button>
+    </div>
 
     <div class="product-grid">
 
         <div class="product">
-            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600" alt="T-shirt">
-            <h3>Basic T-Shirt</h3>
-            <p class="price">€19,99</p>
-            <button>Toevoegen</button>
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600">
+                <span class="badge">Low Stock</span>
+            </div>
+            <div class="info">
+                <h3>Basic T-Shirt</h3>
+                <p class="rating">⭐ 4.6 (120 reviews)</p>
+                <p class="price">€19,99</p>
+                <button>Add to Cart</button>
+            </div>
         </div>
 
         <div class="product">
-            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600" alt="Hoodie">
-            <h3>Premium Hoodie</h3>
-            <p class="price">€49,99</p>
-            <button>Toevoegen</button>
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600">
+            </div>
+            <div class="info">
+                <h3>Premium Hoodie</h3>
+                <p class="rating">⭐ 4.8 (95 reviews)</p>
+                <p class="price">€49,99</p>
+                <button>Add to Cart</button>
+            </div>
         </div>
 
         <div class="product">
-            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600" alt="Jeans">
-            <h3>Skinny Jeans</h3>
-            <p class="price">€59,99</p>
-            <b
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600">
+            </div>
+            <div class="info">
+                <h3>Skinny Jeans</h3>
+                <p class="rating">⭐ 4.5 (80 reviews)</p>
+                <p class="price">€59,99</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600">
+            </div>
+            <div class="info">
+                <h3>Winter Jacket</h3>
+                <p class="rating">⭐ 4.9 (60 reviews)</p>
+                <p class="price">€89,99</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 StyleShop
+</footer>
+
+</body>
+</html>
