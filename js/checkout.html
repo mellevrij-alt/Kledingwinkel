@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - Papa’s Geld</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+<a href="index.html" class="logo">Papa’s Geld</a>
+<nav>
+<a href="index.html">Home</a>
+<a href="cart.html">Winkelwagen</a>
+</nav>
+</header>
+
+<section class="checkout">
+<h2>Checkout</h2>
+
+<p>Product totaal (incl. BTW): <span id="total-price">€0,00</span></p>
+
+<input placeholder="Bezorgadres" type="text">
+<select>
+<option>iDEAL</option>
+<option>Creditcard</option>
+<option>PayPal</option>
+</select>
+
+<p>Geschatte levering: 2-4 werkdagen</p>
+<p>Gratis retourneren binnen 30 dagen.</p>
+
+<button class="cta" onclick="placeOrder()">Bestelling plaatsen</button>
+<p class="confirmation" id="confirmation" style="display:none;">✔ Bedankt voor je aankoop!</p>
+</section>
+
+<script src="js/script.js"></script>
+<script>
+function placeOrder() {
+    document.getElementById("confirmation").style.display = "block";
+    cart = [];
+    localStorage.removeItem('cart'); // Als je localStorage wilt gebruiken
+    document.getElementById("total-price").textContent = "€0,00";
+}
+
+// Optioneel: totaalprijs tonen van cart
+document.addEventListener("DOMContentLoaded", function() {
+    let total = cart.reduce((sum,item)=>sum+item.price*item.quantity,0);
+    document.getElementById("total-price").textContent = `€${total.toFixed(2)}`;
+});
+</script>
+</body>
+</html>
