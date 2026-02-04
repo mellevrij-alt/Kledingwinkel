@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Papa&#8217;s Geld</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- COOKIE -->
+<div class="cookie">
+Deze website gebruikt cookies om je ervaring te verbeteren.
+<button onclick="this.parentElement.style.display='none'">Accepteren</button>
+</div>
+
+<!-- HEADER -->
+<header>
+<a href="#home" class="logo">Papa&#8217;s Geld</a>
+<nav>
+<a href="#categories">Categorieën</a>
+<a href="#cart">Winkelwagen</a>
+<a href="#checkout">Checkout</a>
+</nav>
+<input class="search" placeholder="Zoek kleding...">
+</header>
+
+<!-- HERO / HOME -->
+<section id="home" class="hero">
+<div class="overlay"></div>
+<div class="hero-content">
+<h1>Papa&#8217;s Geld</h1>
+<p class="quote">Dress Like You Inherited It</p>
+<p class="intro">
+Voor mensen die moeiteloos stijl uitstralen.
+Ontdek premium fashion en tijdloze designs.
+</p>
+<a href="#categories"><button class="cta">Shop Now</button></a>
+</div>
+</section>
+
+<!-- HIGHLIGHTS / PRODUCTEN -->
+<section class="highlights">
+<h2>Aanbiedingen & Trending</h2>
+<div class="cards">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600">
+<div class="label">-30%</div>
+<h3>Luxury Tee</h3>
+<p>€39,99</p>
+<button onclick="addToCart('Luxury Tee',39.99)">Toevoegen aan winkelwagen</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600">
+<div class="label">Trending</div>
+<h3>Signature Hoodie</h3>
+<p>€89,99</p>
+<button onclick="addToCart('Signature Hoodie',89.99)">Toevoegen aan winkelwagen</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600">
+<div class="label">Limited</div>
+<h3>Tailored Jeans</h3>
+<p>€129,99</p>
+<button onclick="addToCart('Tailored Jeans',129.99)">Toevoegen aan winkelwagen</button>
+</div>
+</div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="categories">
+<h2>Shop per categorie</h2>
+<div class="filters">
+<select><option>Maat</option></select>
+<select><option>Kleur</option></select>
+<select><option>Prijs</option></select>
+<select><option>Type</option></select>
+</div>
+
+<p class="product-count">124 producten gevonden</p>
+
+<div class="grid">
+<div class="product">
+<img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600">
+<h3>Designer Jacket</h3>
+<p>Op voorraad</p>
+<button onclick="addToCart('Designer Jacket',249.99)">Bekijk product</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600">
+<h3>Minimal Coat</h3>
+<p>Lage voorraad</p>
+<button onclick="addToCart('Minimal Coat',199.99)">Bekijk product</button>
+</div>
+</div>
+</section>
+
+<!-- PRODUCT PAGE MOCKUP -->
+<section class="product-page">
+<h2>Designer Jacket</h2>
+<div class="product-layout">
+<img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800" alt="Designer Jacket">
+<div>
+<p class="price">€249,99</p>
+<p>Premium wolmix jas ontworpen voor comfort en luxe uitstraling.</p>
+<p><b>Materiaal:</b> 80% wol, 20% polyester</p>
+<p><b>Status:</b> Op voorraad</p>
+
+<select><option>Maat kiezen</option></select>
+<select><option>Kleur kiezen</option></select>
+
+<div class="buttons">
+<button onclick="toggleLike(this)">❤️ Like</button>
+<button onclick="addToCart('Designer Jacket',249.99)" class="cta">Toevoegen aan winkelwagen</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WINKELWAGEN -->
+<section id="cart" class="cart">
+<h2>Winkelwagen</h2>
+<!-- Cart wordt dynamisch ingevuld door JS -->
+</section>
+
+<!-- CHECKOUT -->
+<section id="checkout" class="checkout">
+<h2>Checkout</h2>
+<p>Product totaal (incl. BTW): <span id="total-price">€0,00</span></p>
+<input placeholder="Bezorgadres" type="text">
+<select>
+<option>iDEAL</option>
+<option>Creditcard</option>
+<option>PayPal</option>
+</select>
+<p>Geschatte levering: 2-4 werkdagen</p>
+<p>Gratis retourneren binnen 30 dagen.</p>
+<button class="cta" onclick="placeOrder()">Bestelling plaatsen</button>
+<p class="confirmation" id="confirmation" style="display:none;">✔ Bedankt voor je aankoop!</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-grid">
+<div>
+<h4>Contact</h4>
+<p>info@papasgeld.nl</p>
+</div>
+<div>
+<h4>Over ons</h4>
+<p>Premium fashion webshop.</p>
+</div>
+<div>
+<h4>Klantenservice</h4>
+<p>FAQ</p>
+<p>Retourneren</p>
+</div>
+<div>
+<h4>Privacy</h4>
+<p>Privacy policy</p>
+<p>Terms & Conditions</p>
+<p>Cookie instellingen</p>
+</div>
+</div>
+</footer>
+
+<script>
+let cart = [];
+
+function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
+if(localStorage.getItem('cart')) cart = JSON.parse(localStorage.getItem('cart'));
+
+function addToCart(name, price) {
+    const existing = cart.find(i => i.name===name);
+    if(existing) existing.quantity += 1;
+    else cart.push({name, price, quantity:1});
+    saveCart();
+    alert(`${name} is toegevoegd aan je winkelwagen!`);
+    renderCart();
+}
+
+function removeFromCart(name) {
+    cart = cart.filter(i=>i.name!==name);
+    saveCart();
+    renderCart();
+}
+
+function updateQuantity(name, qty) {
+    const item = cart.find(i=>i.name===name);
+    if(item) item.quantity=parseInt(qty);
+    saveCart();
+    renderCart();
+}
+
+function renderCart() {
+    const container = document.querySelector('.cart');
+    if(!container) return;
+    let html='<h2>Winkelwagen</h2>'; let total=0;
+    cart.forEach(i=>{
+        const itemTotal=i.price*i.quantity; total+=itemTotal;
+        html+=`<div class="cart-item">${i.name} — €${i.price.toFixed(2)}
+        <input type="number" value="${i.quantity}" min="1" onchange="updateQuantity('${i.name}', this.value)">
+        <button onclick="removeFromCart('${i.name}')">Verwijder</button></div>`;
+    });
+    html+=`<h3>Totaal: €${total.toFixed(2)}</h3>
+    <button class="cta" onclick="document.getElementById('checkout').scrollIntoView({behavior:'smooth'})">Verder naar checkout</button>`;
+    container.innerHTML=html;
+    if(document.getElementById('total-price')) document.getElementById('total-price').textContent=`€${total.toFixed(2)}`;
+}
+
+function toggleLike(btn){ btn.classList.toggle('liked'); btn.textContent=btn.classList.contains('liked')?'❤️ Liked':'❤️ Like'; }
+
+function placeOrder(){
+    alert('Bedankt voor je aankoop!');
+    cart=[]; saveCart();
+    renderCart();
+    document.getElementById('confirmation').style.display='block';
+}
+
+document.addEventListener('DOMContentLoaded', renderCart);
+</script>
+
+</body>
+</html>
