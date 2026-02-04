@@ -25,7 +25,7 @@ Deze website gebruikt cookies om je ervaring te verbeteren.
 <input class="search" placeholder="Zoek kleding...">
 </header>
 
-<!-- HERO / HOME -->
+<!-- HERO -->
 <section id="home" class="hero">
 <div class="overlay"></div>
 <div class="hero-content">
@@ -39,10 +39,11 @@ Ontdek premium fashion en tijdloze designs.
 </div>
 </section>
 
-<!-- HIGHLIGHTS / PRODUCTEN -->
+<!-- HIGHLIGHTS -->
 <section class="highlights">
 <h2>Aanbiedingen & Trending</h2>
 <div class="cards">
+
 <div class="card">
 <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600">
 <div class="label">-30%</div>
@@ -66,6 +67,7 @@ Ontdek premium fashion en tijdloze designs.
 <p>€129,99</p>
 <button onclick="addToCart('Tailored Jeans',129.99)">Toevoegen aan winkelwagen</button>
 </div>
+
 </div>
 </section>
 
@@ -100,10 +102,13 @@ Ontdek premium fashion en tijdloze designs.
 
 <!-- PRODUCT PAGE MOCKUP -->
 <section class="product-page">
-<h2>Designer Jacket</h2>
+<button class="back" onclick="window.scrollTo({top:0, behavior:'smooth'})">← Terug</button>
+
 <div class="product-layout">
 <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800" alt="Designer Jacket">
+
 <div>
+<h2>Designer Jacket</h2>
 <p class="price">€249,99</p>
 <p>Premium wolmix jas ontworpen voor comfort en luxe uitstraling.</p>
 <p><b>Materiaal:</b> 80% wol, 20% polyester</p>
@@ -168,59 +173,40 @@ Ontdek premium fashion en tijdloze designs.
 </footer>
 
 <script>
+// --- SHOPPING CART & LIKE ---
 let cart = [];
-
-function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
 if(localStorage.getItem('cart')) cart = JSON.parse(localStorage.getItem('cart'));
+function saveCart(){localStorage.setItem('cart',JSON.stringify(cart));}
 
-function addToCart(name, price) {
-    const existing = cart.find(i => i.name===name);
-    if(existing) existing.quantity += 1;
-    else cart.push({name, price, quantity:1});
-    saveCart();
-    alert(`${name} is toegevoegd aan je winkelwagen!`);
-    renderCart();
+function addToCart(name, price){
+const existing = cart.find(i=>i.name===name);
+if(existing) existing.quantity+=1;
+else cart.push({name, price, quantity:1});
+saveCart();
+alert(`${name} is toegevoegd aan je winkelwagen!`);
+renderCart();
 }
 
-function removeFromCart(name) {
-    cart = cart.filter(i=>i.name!==name);
-    saveCart();
-    renderCart();
+function removeFromCart(name){cart=cart.filter(i=>i.name!==name);saveCart();renderCart();}
+function updateQuantity(name, qty){const item=cart.find(i=>i.name===name);if(item)item.quantity=parseInt(qty);saveCart();renderCart();}
+
+function renderCart(){
+const container=document.querySelector('.cart');if(!container)return;
+let html='<h2>Winkelwagen</h2>';let total=0;
+cart.forEach(i=>{const itemTotal=i.price*i.quantity;total+=itemTotal;
+html+=`<div class="cart-item">${i.name} — €${i.price.toFixed(2)}
+<input type="number" value="${i.quantity}" min="1" onchange="updateQuantity('${i.name}', this.value)">
+<button onclick="removeFromCart('${i.name}')">Verwijder</button></div>`});
+html+=`<h3>Totaal: €${total.toFixed(2)}</h3>
+<button class="cta" onclick="document.getElementById('checkout').scrollIntoView({behavior:'smooth'})">Verder naar checkout</button>`;
+container.innerHTML=html;
+if(document.getElementById('total-price')) document.getElementById('total-price').textContent=`€${total.toFixed(2)}`;
 }
 
-function updateQuantity(name, qty) {
-    const item = cart.find(i=>i.name===name);
-    if(item) item.quantity=parseInt(qty);
-    saveCart();
-    renderCart();
-}
+function toggleLike(btn){btn.classList.toggle('liked');btn.textContent=btn.classList.contains('liked')?'❤️ Liked':'❤️ Like';}
+function placeOrder(){alert('Bedankt voor je aankoop!');cart=[];saveCart();renderCart();document.getElementById('confirmation').style.display='block';}
 
-function renderCart() {
-    const container = document.querySelector('.cart');
-    if(!container) return;
-    let html='<h2>Winkelwagen</h2>'; let total=0;
-    cart.forEach(i=>{
-        const itemTotal=i.price*i.quantity; total+=itemTotal;
-        html+=`<div class="cart-item">${i.name} — €${i.price.toFixed(2)}
-        <input type="number" value="${i.quantity}" min="1" onchange="updateQuantity('${i.name}', this.value)">
-        <button onclick="removeFromCart('${i.name}')">Verwijder</button></div>`;
-    });
-    html+=`<h3>Totaal: €${total.toFixed(2)}</h3>
-    <button class="cta" onclick="document.getElementById('checkout').scrollIntoView({behavior:'smooth'})">Verder naar checkout</button>`;
-    container.innerHTML=html;
-    if(document.getElementById('total-price')) document.getElementById('total-price').textContent=`€${total.toFixed(2)}`;
-}
-
-function toggleLike(btn){ btn.classList.toggle('liked'); btn.textContent=btn.classList.contains('liked')?'❤️ Liked':'❤️ Like'; }
-
-function placeOrder(){
-    alert('Bedankt voor je aankoop!');
-    cart=[]; saveCart();
-    renderCart();
-    document.getElementById('confirmation').style.display='block';
-}
-
-document.addEventListener('DOMContentLoaded', renderCart);
+document.addEventListener('DOMContentLoaded',renderCart);
 </script>
 
 </body>
