@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Designer Jacket - Papa’s Geld</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+<a href="index.html" class="logo">Papa’s Geld</a>
+<nav>
+<a href="index.html">Home</a>
+<a href="cart.html">Winkelwagen</a>
+</nav>
+</header>
+
+<section class="product-page">
+<button class="back" onclick="window.history.back()">← Terug</button>
+
+<div class="product-layout">
+<img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800" alt="Designer Jacket">
+
+<div>
+<h2>Designer Jacket</h2>
+<p class="price">€249,99</p>
+<p>Premium wolmix jas ontworpen voor comfort en luxe uitstraling.</p>
+<p><b>Materiaal:</b> 80% wol, 20% polyester</p>
+<p><b>Status:</b> Op voorraad</p>
+
+<select><option>Maat kiezen</option></select>
+<select><option>Kleur kiezen</option></select>
+
+<div class="buttons">
+<button onclick="toggleLike(this)">❤️ Like</button>
+<button onclick="addToCart('Designer Jacket',249.99)" class="cta">Toevoegen aan winkelwagen</button>
+</div>
+</div>
+</div>
+</section>
+
+<script src="js/script.js"></script>
+</body>
+</html>
