@@ -11,16 +11,16 @@
 
 <!-- COOKIE -->
 
-<div class="cookie" id="cookieBox">
-Deze website gebruikt cookies.
-<button onclick="acceptCookies()">Accepteren</button>
+<div class="cookie">
+Deze website gebruikt cookies om je ervaring te verbeteren.
+<button onclick="this.parentElement.style.display='none'">Accepteren</button>
 </div>
 
 <!-- HEADER -->
 
 <header>
 
-<a href="#home" class="logo">Papa’s Geld</a>
+<a href="#" class="logo">Papa’s Geld</a>
 
 <nav>
 <a href="#categories">Categorieën</a>
@@ -29,18 +29,14 @@ Deze website gebruikt cookies.
 <a href="#favorites">Favorieten</a>
 </nav>
 
-<input 
-class="search" 
-id="searchInput"
-placeholder="Zoek kleding..."
-onkeyup="searchProducts()"
->
+<input class="search" placeholder="Zoek kleding...">
 
 </header>
 
 <!-- HERO -->
 
-<section id="home" class="hero">
+<section class="hero">
+
 <div class="overlay"></div>
 
 <div class="hero-content">
@@ -49,51 +45,87 @@ onkeyup="searchProducts()"
 
 <p class="intro">
 Voor mensen die moeiteloos stijl uitstralen.
+Ontdek premium fashion en tijdloze designs.
 </p>
 
 <a href="#categories">
 <button class="cta">Shop Now</button>
 </a>
-
 </div>
+
 </section>
 
-<!-- PRODUCTS / CATEGORIES -->
+<!-- HIGHLIGHTS -->
+
+<section class="highlights">
+
+<h2>Aanbiedingen & Trending</h2>
+
+<div class="cards">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600">
+<div class="label">-30%</div>
+<h3>Luxury Tee</h3>
+<p>€39,99</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600">
+<div class="label">Trending</div>
+<h3>Signature Hoodie</h3>
+<p>€89,99</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600">
+<div class="label">Limited</div>
+<h3>Tailored Jeans</h3>
+<p>€129,99</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- CATEGORIES -->
 
 <section id="categories" class="categories">
 
-<h2>Shop</h2>
+<h2>Shop per categorie</h2>
 
-<div class="grid" id="productGrid">
+<div class="filters">
+<select><option>Maat</option></select>
+<select><option>Kleur</option></select>
+<select><option>Prijs</option></select>
+<select><option>Type</option></select>
+</div>
+
+<p class="product-count">124 producten gevonden</p>
+
+<div class="grid">
 
 <div class="product">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600">
-<h3 class="product-title">Luxury Tee</h3>
-<p>€39,99</p>
-<button onclick="scrollToProduct()">Bekijk product</button>
+<img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600">
+<h3>Designer Jacket</h3>
+<p>Op voorraad</p>
+<button>Bekijk product</button>
 </div>
 
 <div class="product">
-<img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600">
-<h3 class="product-title">Signature Hoodie</h3>
-<p>€89,99</p>
-<button onclick="scrollToProduct()">Bekijk product</button>
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600">
-<h3 class="product-title">Tailored Jeans</h3>
-<p>€129,99</p>
-<button onclick="scrollToProduct()">Bekijk product</button>
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600">
+<h3>Minimal Coat</h3>
+<p>Lage voorraad</p>
+<button>Bekijk product</button>
 </div>
 
 </div>
 
 </section>
 
-<!-- PRODUCT -->
+<!-- PRODUCT PAGE MOCKUP -->
 
-<section class="product-page" id="product">
+<section class="product-page">
 
 <button class="back" onclick="history.back()">← Terug</button>
 
@@ -106,27 +138,26 @@ Voor mensen die moeiteloos stijl uitstralen.
 <h2>Designer Jacket</h2>
 <p class="price">€249,99</p>
 
-<p>Premium jas met luxe uitstraling.</p>
+<p>
+Premium wolmix jas ontworpen voor comfort en luxe uitstraling.
+</p>
+
+<p><b>Materiaal:</b> 80% wol, 20% polyester</p>
+<p><b>Status:</b> Op voorraad</p>
 
 <select><option>Maat kiezen</option></select>
 <select><option>Kleur kiezen</option></select>
 
 <div class="buttons">
-<button onclick="likeProduct()">❤️ Like</button>
-<button onclick="addToCart()">Toevoegen aan winkelwagen</button>
+<button>❤️ Like</button>
+<button>Gerelateerde producten</button>
+<button class="cta">Toevoegen aan winkelwagen</button>
 </div>
 
 </div>
 
 </div>
 
-</section>
-
-<!-- FAVORITES -->
-
-<section id="favorites" class="cart">
-<h2>Favorieten</h2>
-<p id="favoritesText">Nog geen favoriete producten.</p>
 </section>
 
 <!-- CART -->
@@ -135,8 +166,75 @@ Voor mensen die moeiteloos stijl uitstralen.
 
 <h2>Winkelwagen</h2>
 
-<div id="cartItems">
-Nog geen producten toegevoegd.
+<div class="cart-item">
+Luxury Tee — €39,99  
+<input type="number" value="1">
+<button>Verwijder</button>
 </div>
 
-<h3 id="total
+<h3>Totaal: €39,99</h3>
+
+<button class="cta">Verder naar checkout</button>
+
+</section>
+
+<!-- CHECKOUT -->
+
+<section class="checkout">
+
+<h2>Checkout</h2>
+
+<p>Product totaal (incl. BTW): €48,39</p>
+
+<input placeholder="Bezorgadres">
+
+<select>
+<option>iDEAL</option>
+<option>Creditcard</option>
+<option>PayPal</option>
+</select>
+
+<p>Geschatte levering: 2-4 werkdagen</p>
+<p>Gratis retourneren binnen 30 dagen.</p>
+
+<button class="cta">Bestelling plaatsen</button>
+
+<p class="confirmation">✔ Bedankt voor je aankoop!</p>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h4>Contact</h4>
+<p>info@papasgeld.nl</p>
+</div>
+
+<div>
+<h4>Over ons</h4>
+<p>Premium fashion webshop.</p>
+</div>
+
+<div>
+<h4>Klantenservice</h4>
+<p>FAQ</p>
+<p>Retourneren</p>
+</div>
+
+<div>
+<h4>Privacy</h4>
+<p>Privacy policy</p>
+<p>Terms & Conditions</p>
+<p>Cookie instellingen</p>
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
